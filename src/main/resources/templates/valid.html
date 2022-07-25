@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证</title>
+</head>
+<body>
+<form role="form" action = "/Valid" method="post">
+    姓名：<input type="text" id="bi_name" name = "bi_name"> <br>
+    部门：<input type="text" id="bi_department" name = "bi_department"> <br>
+    ip地址：<input type="text" id="bi_ip" name = "bi_ip"> <br>
+    mac地址：<input type="text" id="bi_mac" name = "bi_mac"> <br>
+    <input type="submit" id = "valid" value = "验证是否提交成功"><br>
+    <input type="button" id="register" value="去提交新信息" onclick="javascrtpt:window.location.href='/submit'">
+
+
+</form>
+</body>
+</html>

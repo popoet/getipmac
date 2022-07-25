@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提交信息页</title>
+
+<script th:inline="javascript">
+
+</script>
+</head>
+<body>
+
+<form role="form" action="/register" method="post">
+
+    请输入:<br>
+    姓名（必填）:<input type="text" name="bi_name" id="bi_name"><br>
+    部门：<input type="text" id="bi_department" name = "bi_department"> <br>
+    ip地址：<input type="text" id="bi_ip" name = "bi_ip"> <br>
+    mac地址：<input type="text" id="bi_mac" name = "bi_mac"> <br>
+    <input type="submit" name="submit" value="提交"><br>
+    <input type="button" id="valid" value="去验证是否提交" onclick="javascrtpt:window.location.href='/valid'">
+    <h2 th:text="${msg}">大家好</h2>
+
+</form>
+</body>
+</html>
