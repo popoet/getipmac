@@ -8,9 +8,11 @@ import javax.annotation.Resource;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 @Service
 public class UserService {
@@ -26,10 +28,14 @@ public class UserService {
         userMapper.saveInfo(bi_name,bi_department,bi_ip,bi_mac);
     }
 
-    public String GetMacIp() throws SocketException {
-        /**
-         * mac
-         */
+
+
+
+    /**
+     *
+     * @return MAC
+     */
+    public String GetMac() throws SocketException {
         StringBuilder sb = new StringBuilder();
         Enumeration<NetworkInterface> allNetInterfaces = NetworkInterface.getNetworkInterfaces();
         byte[] mac = null;
@@ -46,12 +52,20 @@ public class UserService {
                 }
             }
         }
-        System.out.println("mac地址是："+sb.toString());
+        String str_mac = StringUtils.substring(sb.toString(), 0,17);
+        return str_mac;
+//        System.out.println("mac地址是："+sb.toString());
 
+//        String str = "mac地址是："+sb.toString()+"IP地址是："+ipList.toString();
+//        return str;
+    }
 
-        /**
-         * ip
-         */
+    /**
+     *
+     * @return 网卡IP
+     */
+    public String GetIp(){
+
         List<String> ipList = new ArrayList<String>();
         InetAddress ip = null;
         try {
@@ -70,17 +84,29 @@ public class UserService {
                         continue;
                     }
                     ipList.add(sIP);
-                    System.out.println("IP地址是："+sIP);
+                    //System.out.println("IP地址是："+sIP);
+                    //System.out.println(StringUtils.strip(list.toString(),"[]"));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        String str = "mac地址是："+sb.toString()+"IP地址是："+ipList.toString();
-        return str;
-
+        String str_ip1 = StringUtils.strip(ipList.toString(),"[]");
+        String str_ip = StringUtils.substring(str_ip1, 11,24);
+        return str_ip;
     }
 
+
+    /**
+     *
+     * @return 主机名和本地ip
+     * @throws UnknownHostException
+     */
+    public String GetName() throws UnknownHostException {
+        InetAddress address = InetAddress.getLocalHost();
+        String hostname=address.getHostName();
+//        String hostip=address.getHostAddress();
+        return hostname;
+    }
 
 }

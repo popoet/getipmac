@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>提交信息页</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("#bi_ip").val($("#sp").text());
+            $("#bi_mac").val($("#mc").text());
+        })
+    </script>
 
-<script th:inline="javascript">
-
-</script>
 </head>
 <body>
 
 <form role="form" action="/register" method="post">
-
     请输入:<br>
     姓名（必填）:<input type="text" name="bi_name" id="bi_name"><br>
     部门：<input type="text" id="bi_department" name = "bi_department"> <br>
     ip地址：<input type="text" id="bi_ip" name = "bi_ip"> <br>
     mac地址：<input type="text" id="bi_mac" name = "bi_mac"> <br>
-    <input type="submit" name="submit" value="提交"><br>
-    <input type="button" id="valid" value="去验证是否提交" onclick="javascrtpt:window.location.href='/valid'">
-    <h2 th:text="${msg}">大家好</h2>
+    <input type="submit" name="submit" value="提交" style="width:60px;height:40px"><br>
+    <input type="button" id="valid" value="去验证是否提交" onclick="javascrtpt:window.location.href='/valid'"><br>
+    主机名：<span th:text="${namemsg}"></span><br>
+    网卡IP地址：<span id="sp" th:text="${ipmsg}"></span><br>
+    MAC地址是：<span id="mc" th:text="${macmsg}"></span>
 
 </form>
 </body>

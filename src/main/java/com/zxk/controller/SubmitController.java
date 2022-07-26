@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 
 @Slf4j
 @Controller
@@ -39,9 +40,11 @@ public class SubmitController {
         }
     }
     @RequestMapping("/submit")
-    public String disp(Model model) throws SocketException {
+    public String disp(Model model) throws SocketException, UnknownHostException {
         UserService userService=new UserService();
-        model.addAttribute("msg",userService.GetMacIp());
+        model.addAttribute("macmsg",userService.GetMac());
+        model.addAttribute("ipmsg",userService.GetIp());
+        model.addAttribute("namemsg",userService.GetName());
         return "submit";
     }
 

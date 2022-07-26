@@ -8,9 +8,7 @@ import java.util.Enumeration;
 import java.util.List;
 
 public class MACTest01 {
-
     public static void main(String[] args) throws SocketException {
-
         /**
          * mac
          */
@@ -31,7 +29,6 @@ public class MACTest01 {
             }
         }
         //System.out.println("mac地址是："+sb.toString());
-
 
         /**
          * ip
