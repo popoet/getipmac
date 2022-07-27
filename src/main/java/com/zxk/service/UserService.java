@@ -52,7 +52,7 @@ public class UserService {
                 }
             }
         }
-        String str_mac = StringUtils.substring(sb.toString(), 0,17);
+        String str_mac = sb.toString();
         return str_mac;
 //        System.out.println("mac地址是："+sb.toString());
 
@@ -92,7 +92,7 @@ public class UserService {
             e.printStackTrace();
         }
         String str_ip1 = StringUtils.strip(ipList.toString(),"[]");
-        String str_ip = StringUtils.substring(str_ip1, 11,24);
+        String str_ip = StringUtils.substringAfter(str_ip1, "127.0.0.1, ");
         return str_ip;
     }
 
