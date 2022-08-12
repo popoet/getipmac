@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
-import java.net.SocketException;
-import java.net.UnknownHostException;
+import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 @Controller
@@ -34,19 +33,26 @@ public class SubmitController {
         log.info("bi_ip:{}",bi_ip);
         log.info("bi_mac:{}",bi_mac);
         if(userBean!=null){
-            return "success";
+            return "success1";
         }else {
-            return "error";
+            return "error1";
         }
     }
+
+
     @RequestMapping("/submit")
-    public String disp(Model model) throws SocketException, UnknownHostException {
+    public String disp(Model model,HttpServletRequest request) throws Exception {
         UserService userService=new UserService();
-        model.addAttribute("macmsg",userService.GetMac());
-        model.addAttribute("ipmsg",userService.GetIp());
-        model.addAttribute("namemsg",userService.GetName());
-        return "submit";
+        model.addAttribute("macmsg",userService.GetMac(request));
+        model.addAttribute("ipmsg",userService.GetIp(request));
+//        model.addAttribute("namemsg",userService.GetHostName(request));
+
+        /*
+        * thymeleaf用model才可以将后台数据传到前台
+        */
+        return "submit.html";
     }
+
 
     //实现提交信息到数据库功能
     @RequestMapping(value = "/register",method = RequestMethod.POST)
@@ -54,8 +60,5 @@ public class SubmitController {
         userService.Insert(bi_name,bi_department,bi_ip,bi_mac);
         return "success";
     }
-
-
-
 
 }

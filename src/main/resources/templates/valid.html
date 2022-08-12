@@ -3,17 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <title>验证</title>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <style th:inline="text">
+        body{
+            background: url("[[@{/}]]images/home-bg.jpg");
+            background-size: 100%,100%;
+            position: absolute;
+            left: 40%;  /* 还要再向左挪回宽度的一半 */
+            margin-left: -50px;
+            top: 50%;  /* 还要向上挪回高度的一半 */
+            margin-top: -50px
+        }
+        fieldset{
+            border-radius: 20px;
+            display: compact;
+            width: 375.2px;
+            height: 300px;
+
+        }
+        .button {
+            text-align:center;
+            margin-top: 10px ;
+        }
+
+        .table {
+            margin-top: 20px;
+            margin-left: 10px;
+        }
+
+        input {
+            margin: 4px;
+            width: 200px;
+            height: 25px;
+            border: none;
+        }
+        select {
+            margin: 4px;
+            width: 200px;
+            height: 25px;
+            border: none;
+        }
+        .button1:hover{
+            box-shadow: 2px 2px 15px 2px rgb(190, 225, 255);
+            background-color: gainsboro;
+            color: black;
+        }
+    </style>
 </head>
 <body>
-<form role="form" action = "/Valid" method="post">
-    姓名：<input type="text" id="bi_name" name = "bi_name"> <br>
-    部门：<input type="text" id="bi_department" name = "bi_department"> <br>
-    ip地址：<input type="text" id="bi_ip" name = "bi_ip"> <br>
-    mac地址：<input type="text" id="bi_mac" name = "bi_mac"> <br>
-    <input type="submit" id = "valid" value = "验证是否提交成功"><br>
-    <input type="button" id="register" value="去提交新信息" onclick="javascrtpt:window.location.href='/submit'">
+<form role="form" action = "/Valid" method="post" align="center" >
+    <fieldset>
+    <table class="table">
+        <h2 align="center">IP&MAC提交查询验证</h2>
+        <tr>
+            <td>姓名：</td>
+            <td><input type="text" id="bi_name" name = "bi_name"></td>
+        </tr>
 
+        <tr>
+            <td>所属部门：</td>
+            <td><select id="bi_department" name="bi_department">
+                <option selected="selected" >联创项目实施部</option>
+                <option>联创规划发展部</option>
+                <option>联创市场营销部</option>
+                <option>联创经营管理部</option>
+                <option>联创研发中心</option>
+            </select></td>
+        </tr>
 
+        <tr>
+            <td>ip地址：</td>
+            <td><input type="text" id="bi_ip" name = "bi_ip"></td>
+        </tr>
+
+        <tr>
+            <td>mac地址：</td>
+            <td><input type="text" id="bi_mac" name = "bi_mac"></td>
+        </tr>
+
+    </table>
+
+    <div class="button">
+        <input type="submit" class="button1" id = "valid" value = "验证是否提交成功"><br>
+
+        <input type="button" class="button1" id="index" value="去首页" onclick="javascrtpt:window.location.href='/'"><br>
+    </div>
+
+</fieldset>
 </form>
 </body>
 </html>

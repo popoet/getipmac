@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息展示</title>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <style th:inline="text">
+        body{
+            background-color: gainsboro;
+        }
+        .button1:hover{
+            box-shadow: 2px 2px 15px 2px rgb(190, 225, 255);
+            background-color: transparent;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <table border="0" style="margin-top:4px; margin-left: 18px">
+        <tr>
+           <td><a href="#" class="easyui-linkbutton" onclick="downloadfile();">数据导出</a></td>
+            <td><input type="button" class="button1" id="index" value="去首页" onclick="javascrtpt:window.location.href='/'"></td>
+        </tr>
+
+
+        <script>
+            function downloadfile(){
+                window.location.href="/UserExcelDownloads";
+            }
+        </script>
+    </table>
+
+
+    <table border="1" width="1000">
+        <thead>
+        <tr>
+            <td>姓名</td>
+            <td>部门</td>
+            <td>ip地址</td>
+            <td>mac地址</td>
+        </tr>
+        </thead>
+
+        <tr th:each="u:${list}">
+            <td th:text="${u.bi_name}"></td>
+            <td th:text="${u.bi_department}"></td>
+            <td th:text="${u.bi_ip}"></td>
+            <td th:text="${u.bi_mac}"></td>
+        </tr>
+
+    </table>
+
+
+</body>
+</html>

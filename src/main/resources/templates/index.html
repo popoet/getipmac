@@ -1,12 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <style th:inline="text">
+        body{
+            background: url("[[@{/}]]images/home-bg.jpg");
+            background-size: 100%,100%;
+            position: absolute;
+            left: 40%;  /* 还要再向左挪回宽度的一半 */
+            margin-left: -50px;
+            top: 50%;  /* 还要向上挪回高度的一半 */
+            margin-top: -50px
+        }
+        fieldset{
+            border-radius: 20px;
+            display: compact;
+            width: 375.2px;
+            height: 300px;
+        }
+        .button {
+            text-align:center;
+            margin-top: 10px ;
+        }
+        input {
+            margin: 4px;
+            width: 200px;
+            height: 40px;
+            border: none;
+        }
+        .button1:hover{
+            box-shadow: 2px 2px 15px 2px rgb(190, 225, 255);
+            background-color: gainsboro;
+            color: black;
+        }
+    </style>
 </head>
 <body>
-<h1>首页</h1>
-<input type="button" id="valid" value="去验证是否提交" onclick="javascrtpt:window.location.href='/valid'"><br>
-<input type="button" id="register" value="去提交新信息" onclick="javascrtpt:window.location.href='/submit'">
+<fieldset>
+    <h1 align="center">首页</h1>
+    <div class="button">
+        <input type="button" class="button1" id="register" value="去提交新信息"  onclick="javascrtpt:window.location.href='/submit'" ><br/><br/>
+        <input type="button" class="button1" id="valid" value="去验证是否提交" onclick="javascrtpt:window.location.href='/valid'"><br/><br/>
+        <input type="button" class="button1" id="getinfo" value="去导出全部信息" onclick="javascrtpt:window.location.href='/listInfo'">
+    </div>
+</fieldset>
 </body>
 </html>

@@ -1,31 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>提交信息页</title>
-    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>IP地址 MAC地址收集器</title>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<!--    百度的在线jquery库-->
+    <style th:inline="text">
+        body{
+            background: url("[[@{/}]]images/home-bg.jpg");
+            /*thymeleaf的特殊语法
+
+            报红是因为不符合html的语法，但是thymeleaf是没毛病的，可以用
+
+            */
+            background-size: 100%,100%;
+            position: absolute;
+            left: 40%;  /* 还要再向左挪回宽度的一半 */
+            margin-left: -50px;
+            top: 50%;  /* 还要向上挪回高度的一半 */
+            margin-top: -50px
+        }
+        fieldset{
+            border-radius: 20px;
+            display: compact;
+            width: 375.2px;
+            height: 300px;
+        }
+        .button {
+            text-align:center;
+            margin-top: 10px ;
+        }
+
+        .table {
+            margin-top: 20px;
+            margin-left: 10px;
+        }
+
+        input {
+            margin: 4px;
+            width: 200px;
+            height: 25px;
+            border: none;
+        }
+
+        select {
+            margin: 4px;
+            width: 200px;
+            height: 25px;
+            border: none;
+        }
+        .submit:hover,.goindex:hover{
+            box-shadow: 2px 2px 15px 2px rgb(190, 225, 255);
+            background-color: gainsboro;
+            color: black;
+        }
+    </style>
+
+    <script>
+        function getValue(){
+            var str = document.getElementById("bi_name").value;
+            if(str.replace(/(^s*)|(s*$)/g,"").length == 0)
+            {
+                alert('姓名不能为空');
+                return false;
+            }
+        }
+    </script>
+
     <script>
         $(function(){
             $("#bi_ip").val($("#sp").text());
             $("#bi_mac").val($("#mc").text());
         })
     </script>
-
 </head>
 <body>
 
-<form role="form" action="/register" method="post">
-    请输入:<br>
-    姓名（必填）:<input type="text" name="bi_name" id="bi_name"><br>
-    部门：<input type="text" id="bi_department" name = "bi_department"> <br>
-    ip地址：<input type="text" id="bi_ip" name = "bi_ip"> <br>
-    mac地址：<input type="text" id="bi_mac" name = "bi_mac"> <br>
-    <input type="submit" name="submit" value="提交" style="width:60px;height:40px"><br>
-    <input type="button" id="valid" value="去验证是否提交" onclick="javascrtpt:window.location.href='/valid'"><br>
-    主机名：<span th:text="${namemsg}"></span><br>
-    网卡IP地址：<span id="sp" th:text="${ipmsg}"></span><br>
-    MAC地址是：<span id="mc" th:text="${macmsg}"></span>
+<form role="form" name="myform" action="/register" method="post">
+    <fieldset>
+    <table class="table">
+        <h2 align="center">IP地址获取/提交界面</h2>
+        <tr>
+            <td>姓名：</td>
+            <td><input type="text" name="bi_name" id="bi_name"></td>
+        </tr>
+        <tr>
+            <td>所属部门：</td>
+            <td><select id="bi_department" name="bi_department">
+                <option selected="selected" >联创项目实施部</option>
+                <option>联创规划发展部</option>
+                <option>联创市场营销部</option>
+                <option>联创经营管理部</option>
+                <option>联创研发中心</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td> IP地址：</td>
+            <td><input type="text" id="bi_ip" name = "bi_ip" ></td>
+        </tr>
+        <tr>
+            <td>MAC地址：</td>
+            <td><input type="text" id="bi_mac" name = "bi_mac" ></td>
+        </tr>
+    </table>
+    <div class="button">
+         <!-- 主机名是：<span id="na" th:text="${namemsg}"></span><br>-->
+        <input class="submit" onclick="getValue()" type="submit" value="提交信息"/>
+        <input class="goindex" type="button" id="index" value="去首页" onclick="javascrtpt:window.location.href='/'"><br><br>
+        网卡IP地址：<span id="sp"  th:text="${ipmsg}"></span><br>
+        物理MAC地址是：<span id="mc" th:text="${macmsg}"></span><br>
 
+    </div>
+    </fieldset>
 </form>
+
 </body>
 </html>

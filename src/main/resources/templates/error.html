@@ -3,10 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Error</title>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <style th:inline="text">
+        body{
+            background: url("[[@{/}]]images/home-bg.jpg");
+            background-size: 100%,100%;
+            position: absolute;
+            left: 40%;  /* 还要再向左挪回宽度的一半 */
+            margin-left: -50px;
+            top: 60%;  /* 还要向上挪回高度的一半 */
+            margin-top: -50px
+        }
+        .button {
+            text-align:center;
+            margin-top: 10px ;
+        }
+        input {
+            margin: 4px;
+            width: 200px;
+            height: 30px;
+            border: none;
+        }
+        .button1:hover{
+            box-shadow: 2px 2px 15px 2px rgb(190, 225, 255);
+            background-color: gainsboro;
+            color: black;
+        }
+    </style>
 </head>
 <body>
-<h2>提交信息失败/发生错误</h2>
-<input type="button" id="valid" value="去验证是否提交" onclick="javascrtpt:window.location.href='/valid'">
-<input type="button" id="register" value="去提交新信息" onclick="javascrtpt:window.location.href='/submit'">
+<div class="button">
+<h2>提交信息失败！</h2>
+<input type="button" class="button1" id="valid" value="去验证是否提交" onclick="javascrtpt:window.location.href='/valid'"><br>
+<input type="button" class="button1" id="register" value="去提交新信息" onclick="javascrtpt:window.location.href='/submit'"><br>
+<input type="button" class="button1" id="index" value="去首页" onclick="javascrtpt:window.location.href='/'">
+</div>
 </body>
 </html>
